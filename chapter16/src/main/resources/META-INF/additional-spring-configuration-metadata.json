@@ -1,0 +1,37 @@
+{
+  "hints": [
+    {
+      "name": "request-id.propagate-headers",
+      "values": [
+        {
+          "value": "X-Correlation-Id",
+          "description": "Common correlation header used by many HTTP clients."
+        },
+        {
+          "value": "X-B3-TraceId",
+          "description": "B3 propagation header used by Zipkin and compatible tracers."
+        },
+        {
+          "value": "X-Request-Id",
+          "description": "Generic request id header; also the default value of request-id.header.name."
+        },
+        {
+          "value": "traceparent",
+          "description": "W3C Trace Context header."
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "request-id.header-name",
+      "type": "java.lang.String",
+      "description": "Legacy flat property for the inbound header name.",
+      "deprecation": {
+        "reason": "Renamed to fit the nested Header configuration introduced in 0.2.",
+        "replacement": "request-id.header.name",
+        "level": "warning"
+      }
+    }
+  ]
+}

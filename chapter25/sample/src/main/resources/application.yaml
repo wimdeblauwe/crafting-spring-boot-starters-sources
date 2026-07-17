@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: queue-poller-sample
+
+queue-poller:
+  queue-name: orders
+  receive-timeout: 500ms
+
+logging:
+  level:
+    com.example.queuepoller: INFO
+    com.example.sample: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+  tracing:
+    sampling:
+      probability: 1.0
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces

@@ -1,0 +1,7 @@
+queue-poller:
+  queue-name: orders
+  receive-timeout: 100ms
+
+logging:
+  level:
+    com.example.queuepoller: INFO

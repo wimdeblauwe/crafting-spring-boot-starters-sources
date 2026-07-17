@@ -1,0 +1,24 @@
+= Extension points
+
+The starter exposes one extension point.
+
+== `RequestIdCustomizer`
+
+Implement `RequestIdCustomizer` and publish the implementation as a bean to observe
+or replace the request identifier before it is written to the response header and
+the MDC.
+
+[source,java]
+----
+include::{starter-source}/com/example/requestid/RequestIdCustomizer.java[tag=interface]
+----
+
+A typical registration looks like this:
+
+[source,java]
+----
+@Bean
+RequestIdCustomizer prefixCustomizer() {
+    return incoming -> incoming == null ? null : "svc-" + incoming;
+}
+----

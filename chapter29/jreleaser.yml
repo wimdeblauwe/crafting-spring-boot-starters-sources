@@ -1,0 +1,40 @@
+project:
+  name: request-id-spring-boot-starter
+  description: Spring Boot starter that propagates an X-Request-ID header through the MDC.
+  authors:
+    - Example Author
+  license: Apache-2.0
+  inceptionYear: '2026'
+  links:
+    homepage: https://github.com/example/request-id-spring-boot-starter
+  java:
+    groupId: com.example.requestid
+    version: '21'
+
+release:
+  github:
+    owner: example
+    name: request-id-spring-boot-starter
+    tagName: 'v{{projectVersion}}'
+    skipTag: false
+    overwrite: false
+    draft: false
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}'
+
+signing:
+  active: ALWAYS
+  armored: true
+
+deploy:
+  maven:
+    mavenCentral:
+      sonatype:
+        active: RELEASE
+        url: https://central.sonatype.com/api/v1/publisher
+        applyMavenCentralRules: true
+        stagingRepositories:
+          - target/staging-deploy

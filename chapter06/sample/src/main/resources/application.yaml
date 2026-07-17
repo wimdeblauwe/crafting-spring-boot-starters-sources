@@ -1,0 +1,8 @@
+request-id:
+  header-overrides:
+    "[/api/admin]": X-Admin-Request-Id
+    "[/api/auth]": X-Auth-Trace-Id
+
+spring:
+  main:
+    web-application-type: none

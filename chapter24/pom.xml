@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.requestid</groupId>
+    <artifactId>request-id-spring-boot-starter</artifactId>
+    <version>1.5.0</version>
+
+    <name>request-id-spring-boot-starter</name>
+    <description>Adds an X-Request-Id header and MDC entry to every HTTP request.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+        <spring-boot.version>4.0.6</spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>docs</id>
+            <build>
+                <plugins>
+                    <!-- tag::exec-plugin[] -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>generate-property-reference</id>
+                                <phase>prepare-package</phase>
+                                <goals><goal>exec</goal></goals>
+                                <configuration>
+                                    <executable>jbang</executable>
+                                    <arguments>
+                                        <argument>${project.basedir}/src/docs/jbang/PropertyReferenceGenerator.java</argument>
+                                        <argument>${project.build.outputDirectory}/META-INF/spring-configuration-metadata.json</argument>
+                                        <argument>${project.build.directory}/generated-docs/property-reference.adoc</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- end::exec-plugin[] -->
+                    <!-- tag::asciidoctor-plugin[] -->
+                    <plugin>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>generate-html-docs</id>
+                                <phase>package</phase>
+                                <goals><goal>process-asciidoc</goal></goals>
+                                <configuration>
+                                    <sourceDirectory>${project.basedir}/src/docs/asciidoc</sourceDirectory>
+                                    <outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
+                                    <backend>html5</backend>
+                                    <attributes>
+                                        <generated>${project.build.directory}/generated-docs</generated>
+                                        <starter-source>${project.basedir}/src/main/java</starter-source>
+                                        <source-highlighter>rouge</source-highlighter>
+                                        <toc>left</toc>
+                                        <sectanchors>true</sectanchors>
+                                        <icons>font</icons>
+                                    </attributes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- end::asciidoctor-plugin[] -->
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

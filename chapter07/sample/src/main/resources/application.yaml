@@ -1,0 +1,13 @@
+request-id:
+  header:
+    name: X-Trace-Id
+  generation:
+    strategy: random-hex
+    length: 12
+
+spring:
+  main:
+    banner-mode: off
+logging:
+  pattern:
+    console: "%-5level %logger{36} : %msg%n"

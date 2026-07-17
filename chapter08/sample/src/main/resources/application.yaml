@@ -1,0 +1,25 @@
+request-id:
+  header:
+    name: X-Trace-Id
+  generation:
+    strategy: random-hex
+    length: 24
+  cache:
+    ttl: 30s
+    max-size: 512KB
+  propagate-headers:
+    - X-Correlation-Id
+    - X-B3-TraceId
+  # tag::path-strategies[]
+  path-strategies:
+    "[/api/admin/**]": X-Admin-Request-Id
+    "[/api/auth/**]": X-Auth-Trace-Id
+    "[/**]": X-Request-Id
+  # end::path-strategies[]
+
+spring:
+  main:
+    banner-mode: off
+logging:
+  pattern:
+    console: "%-5level %logger{36} : %msg%n"

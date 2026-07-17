@@ -1,0 +1,10 @@
+= request-id-spring-boot-starter
+:doctype: book
+:toc: left
+:sectanchors:
+:icons: font
+
+Reference documentation for the `request-id-spring-boot-starter` library, version {revnumber}.
+
+* link:properties.html[Property reference]
+* link:extension-points.html[Extension points]

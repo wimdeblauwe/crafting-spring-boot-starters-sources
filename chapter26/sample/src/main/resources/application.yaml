@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: outbox-sample
+
+server:
+  port: 8080
+
+outbox:
+  poll-interval: 1s
+  publisher:
+    api-key: "super-secret-key-do-not-log"
+  health:
+    max-age: 5s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,outbox,env,configprops"
+  endpoint:
+    health:
+      show-details: always
+    env:
+      show-values: always
+    configprops:
+      show-values: always

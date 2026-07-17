@@ -1,0 +1,10 @@
+request-id:
+  header:
+    name: X-Trace-Id
+
+spring:
+  main:
+    banner-mode: off
+logging:
+  pattern:
+    console: "%-5level %logger{36} : %msg%n"

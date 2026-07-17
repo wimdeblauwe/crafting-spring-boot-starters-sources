@@ -1,0 +1,3 @@
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+  com.example.queuepoller.MultipleMessageHandlersFailureAnalyzer,\
+  com.example.queuepoller.InvalidReceiveTimeoutFailureAnalyzer

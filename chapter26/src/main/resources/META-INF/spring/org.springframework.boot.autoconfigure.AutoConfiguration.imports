@@ -1,0 +1,2 @@
+com.example.outbox.OutboxAutoConfiguration
+com.example.outbox.actuate.OutboxActuatorAutoConfiguration

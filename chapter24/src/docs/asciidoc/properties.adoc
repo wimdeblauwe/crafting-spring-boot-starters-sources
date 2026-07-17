@@ -1,0 +1,7 @@
+= Property reference
+
+The properties below are bound to the `RequestIdProperties` record and validated at
+context startup. Default values are the ones the starter applies when the property
+is absent from the user's `application.yaml`.
+
+include::{generated}/property-reference.adoc[]
