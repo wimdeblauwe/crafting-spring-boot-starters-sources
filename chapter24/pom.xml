@@ -94,9 +94,19 @@
                                     <sourceDirectory>${project.basedir}/src/docs/asciidoc</sourceDirectory>
                                     <outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
                                     <backend>html5</backend>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/src/docs/asciidoc</directory>
+                                            <excludes>
+                                                <exclude>docinfo.html</exclude>
+                                            </excludes>
+                                        </resource>
+                                    </resources>
                                     <attributes>
                                         <generated>${project.build.directory}/generated-docs</generated>
                                         <starter-source>${project.basedir}/src/main/java</starter-source>
+                                        <docs-base-url>https://example.com/request-id</docs-base-url>
+                                        <docinfo>shared</docinfo>
                                         <source-highlighter>rouge</source-highlighter>
                                         <toc>left</toc>
                                         <sectanchors>true</sectanchors>

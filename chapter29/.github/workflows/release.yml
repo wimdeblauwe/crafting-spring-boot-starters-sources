@@ -37,7 +37,6 @@ jobs:
         run: >
           mvn -B versions:set
           -DnewVersion=${{ inputs.releaseVersion }}
-          -DprocessAllModules
           -DgenerateBackupPoms=false
 
       - name: Commit release version
@@ -73,7 +72,6 @@ jobs:
         run: >
           mvn -B versions:set
           -DnewVersion=${{ inputs.nextVersion }}
-          -DprocessAllModules
           -DgenerateBackupPoms=false
 
       - name: Commit next development version

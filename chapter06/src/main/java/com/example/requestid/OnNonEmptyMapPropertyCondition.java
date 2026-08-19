@@ -29,9 +29,9 @@ public class OnNonEmptyMapPropertyCondition extends SpringBootCondition { // <1>
                 .isEmpty(); // <4>
 
         ConditionMessage.Builder message = ConditionMessage
-                .forCondition(ConditionalOnNonEmptyMapProperty.class, "binding '%s'".formatted(propertyPrefix));
+                .forCondition(ConditionalOnNonEmptyMapProperty.class, "'%s'".formatted(propertyPrefix));
         return !empty
-                ? ConditionOutcome.match(message.because("entries were bound"))
-                : ConditionOutcome.noMatch(message.because("no entries were bound")); // <5>
+                ? ConditionOutcome.match(message.because("bound to a non-empty map"))
+                : ConditionOutcome.noMatch(message.because("bound to an empty map")); // <5>
     }
 }

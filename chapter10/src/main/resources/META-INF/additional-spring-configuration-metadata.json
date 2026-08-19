@@ -24,6 +24,12 @@
   ],
   "properties": [
     {
+      "name": "request-id.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Whether the request-id filter is enabled.",
+      "defaultValue": true
+    },
+    {
       "name": "request-id.header-name",
       "type": "java.lang.String",
       "description": "Legacy flat property for the inbound header name.",

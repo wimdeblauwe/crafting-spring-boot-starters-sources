@@ -1,5 +1,6 @@
 package com.example.slug;
 
+import com.ibm.icu.text.Transliterator;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.boot.autoconfigure.AutoConfigurations;
@@ -127,7 +128,7 @@ class SlugAutoConfigurationTests {
     @Test
     void javaTextNormaliserIsUsedWhenIcuIsFiltered() {
         contextRunner
-                .withClassLoader(new FilteredClassLoader("com.ibm.icu.text.Transliterator"))
+                .withClassLoader(new FilteredClassLoader(Transliterator.class))
                 .run(context -> {
                     assertThat(context.getBean(Normaliser.class))
                             .isInstanceOf(JavaTextNormaliser.class);

@@ -1,5 +1,6 @@
 package com.example.slug;
 
+import com.ibm.icu.text.Transliterator;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -14,7 +15,7 @@ public class SlugAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(Normaliser.class)
-    @ConditionalOnClass(name = "com.ibm.icu.text.Transliterator")
+    @ConditionalOnClass(Transliterator.class)
     public Normaliser icuNormaliser() {
         return new IcuNormaliser();
     }
